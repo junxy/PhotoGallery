@@ -1,0 +1,12 @@
+
+Thunbs.db
+#vs
+*.obj
+*.pdb
+*.vspscc
+*.suo
+*.bak
+*.cache
+*.user
+obj/
+bin/

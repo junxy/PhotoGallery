@@ -1,0 +1,41 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title><asp:ContentPlaceHolder ID="Title" runat="server" /></title>
+    <link href="<%= Url.Content("~/Styles/Site.css") %>" rel="stylesheet" />
+    <link href="<%= Url.Content("~/favicon.ico") %>" rel="shortcut icon" type="image/x-icon" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+    <div id="banner">
+        <p class="site-title">
+            <a href="/">照片库</a></p>
+        <ul id="menu">
+            <li class="galleries"><a href="<%= Url.Action("Index", "Gallery") %>">库</a></li>
+            <li class="tags"><a href="<%= Url.Action("Index", "Tag") %>">标记</a></li>
+            <li class="account"><a href="<%= Url.Action("Index", "User") %>">帐户</a></li>
+            <li class="login">
+                <% if (this.Page.User.Identity.IsAuthenticated)
+                   { %>
+                    欢迎 <strong><%= this.Page.User.Identity.Name %></strong>!
+                    <%= Html.ActionLink("注销", "Logout", "Account") %>
+                <%}
+                   else
+                   { %>
+                    <%= Html.ActionLink("登录", "Login", "Account") %>
+                <%} %>
+            </li>
+        </ul>
+    </div>
+    <div id="page">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+    </div>
+    <div id="footer">
+        &copy; <%= DateTime.Now.Year %> - Photo Gallery
+    </div>
+</body>
+</html>
